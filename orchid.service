@@ -1,0 +1,25 @@
+[Unit]
+Description=Orchid Resort Production API
+After=network.target postgresql.service
+
+[Service]
+Type=notify
+User=www-data
+Group=www-data
+WorkingDirectory=/var/www/resort/orchid_production/ResortApp
+Environment="PATH=/var/www/resort/orchid_production/ResortApp/venv/bin"
+ExecStart=/var/www/resort/orchid_production/ResortApp/venv/bin/gunicorn main:app -c gunicorn.conf.py
+ExecReload=/bin/kill -s HUP $MAINPID
+Restart=always
+RestartSec=10
+
+# Security
+NoNewPrivileges=true
+PrivateTmp=true
+
+# Resource limits
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target
+

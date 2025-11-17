@@ -1,0 +1,85 @@
+[33mcommit 633422f6cef7f0a1e269a2320ff5fd9a0f10ac64[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: basil <basilabraham44@gmail.com>
+Date:   Mon Nov 17 13:48:44 2025 +0530
+
+    Major updates: Eco-friendly theme, room features, booking validation, and bug fixes
+    
+    Backend Changes:
+    - Fixed 500 errors in packages, bookings, and nearby-attractions endpoints
+    - Added comprehensive error handling with try-except blocks
+    - Updated booking validation to check adults and children capacity separately
+    - Fixed food orders not showing in billing (include NULL billing_status)
+    - Updated room status logic to show 'Checked-in' vs 'Occupied' correctly
+    - Added employee management: update password, toggle active/inactive status
+    - Enhanced checkout details endpoint with food orders and services
+    - Fixed room availability check for package bookings (case-insensitive room type matching)
+    - Added support for NULL billing_status in food orders
+    
+    Frontend Changes (Dashboard):
+    - Implemented eco-friendly green theme as default
+    - Added Pomma Holidays logo with green background in sidebar
+    - Fixed menu active state persistence
+    - Fixed blank page issue after login from different user
+    - Added auto-refresh dashboard data every 5 minutes
+    - Enhanced checkout details modal with comprehensive information
+    - Updated employee management: edit password, activate/deactivate toggle
+    - Fixed checked-in room detection in Services and FoodOrders pages
+    - Improved room filtering to use booking status instead of room status
+    
+    Frontend Changes (Userend):
+    - Updated booking validation for adults and children separately
+    - Fixed room availability logic for package bookings
+    - Added dynamic room feature badges (replaced hardcoded features)
+    - Improved room type matching (case-insensitive)
+    
+    Database Schema:
+    - Added 12 room feature columns (air_conditioning, wifi, bathroom, etc.)
+    - Added booking_type and room_types columns to packages table
+    
+    Features Added:
+    - Room features: Air Conditioning, Free Wifi, Private Bathroom, Living Room, Terrace, Free Parking, Kitchen, Family Room, BBQ, Garden, Dining Area, Breakfast
+    - Room feature toggles in room creation/edit form
+    - Room feature badges display in room lists
+    - Eco-friendly theme with green color palette
+    - Auto-refresh dashboard functionality
+    - Enhanced checkout details view
+
+ ResortApp/app/api/auth.py                 |   18 [32m+[m[31m-[m
+ ResortApp/app/api/booking.py              |   60 [32m+[m[31m-[m
+ ResortApp/app/api/checkout.py             |  119 [32m++[m[31m-[m
+ ResortApp/app/api/employee.py             |   75 [32m++[m
+ ResortApp/app/api/frontend.py             |   31 [32m+[m[31m-[m
+ ResortApp/app/api/packages.py             |  266 [32m+++++[m[31m-[m
+ ResortApp/app/api/room.py                 |   90 [32m+[m[31m-[m
+ ResortApp/app/curd/packages.py            |   65 [32m+[m[31m-[m
+ ResortApp/app/models/Package.py           |    2 [32m+[m
+ ResortApp/app/models/__init__.py          |   11 [32m+[m
+ ResortApp/app/models/room.py              |   16 [32m+[m[31m-[m
+ ResortApp/app/schemas/checkout.py         |   23 [32m+[m
+ ResortApp/app/schemas/packages.py         |    2 [32m+[m
+ ResortApp/app/schemas/room.py             |   13 [32m+[m
+ ResortApp/app/utils/auth.py               |   34 [32m+[m[31m-[m
+ ResortApp/app/utils/room_status.py        |   29 [32m+[m[31m-[m
+ ResortApp/main.py                         |   45 [32m+[m[31m-[m
+ dasboard/public/index.html                |    3 [32m+[m[31m-[m
+ dasboard/public/pommalogo.png             |  Bin [31m0[m -> [32m46880[m bytes
+ dasboard/src/assets/pommalogo.png         |  Bin [31m0[m -> [32m46880[m bytes
+ dasboard/src/index.css                    |   19 [32m+[m
+ dasboard/src/index.js                     |   16 [32m+[m[31m-[m
+ dasboard/src/layout/DashboardLayout.jsx   |   81 [32m+[m[31m-[m
+ dasboard/src/pages/Billing.jsx            |  210 [32m++++[m[31m-[m
+ dasboard/src/pages/Bookings.jsx           |  530 [32m++++++++++[m[31m--[m
+ dasboard/src/pages/CreateRooms.jsx        |  222 [32m++++[m[31m-[m
+ dasboard/src/pages/Dashboard.jsx          |  184 [32m+++[m[31m--[m
+ dasboard/src/pages/EmployeeManagement.jsx |  102 [32m++[m[31m-[m
+ dasboard/src/pages/FoodOrders.jsx         |  102 [32m++[m[31m-[m
+ dasboard/src/pages/Login.jsx              |   32 [32m+[m[31m-[m
+ dasboard/src/pages/Package.jsx            |  532 [32m+++++++++++[m[31m-[m
+ dasboard/src/pages/Services.jsx           |   63 [32m+[m[31m-[m
+ dasboard/src/utils/env.js                 |   14 [32m+[m[31m-[m
+ userend/package-lock.json                 |    9 [32m+[m[31m-[m
+ userend/userend/package-lock.json         | 1267 [32m++++++++++++++++++++++++++++[m[31m-[m
+ userend/userend/package.json              |    4 [32m+[m[31m-[m
+ userend/userend/public/index.html         |    3 [32m+[m[31m-[m
+ userend/userend/src/App.js                |  600 [32m++++++++++[m[31m----[m
+ 38 files changed, 4352 insertions(+), 540 deletions(-)

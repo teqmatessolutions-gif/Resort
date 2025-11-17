@@ -1,0 +1,96 @@
+# 🚀 Pomma Holidays - Quick Deployment Commands
+# Server: root@139.84.211.200
+# Project: /var/www/resort/Resort_first
+
+# ============================================
+# OPTION 1: Deploy from Local Machine (SSH)
+# ============================================
+
+# Connect to server and run deployment
+ssh root@139.84.211.200 << 'ENDSSH'
+cd /var/www/resort/Resort_first
+git remote set-url origin https://github.com/teqmatessolutions-gif/pomma-latest.git
+git pull origin main
+cd ResortApp && source venv/bin/activate && python3 migrate_database.py && pip install -r requirements.txt --upgrade
+cd ../dasboard && npm install --legacy-peer-deps && npm run build
+cd ../userend/userend && npm install --legacy-peer-deps && npm run build
+cd /var/www/resort/Resort_first/ResortApp && systemctl restart resort.service && systemctl restart nginx
+ENDSSH
+
+# ============================================
+# OPTION 2: Manual Step-by-Step (SSH to server first)
+# ============================================
+
+# Step 1: Connect to server
+ssh root@139.84.211.200
+
+# Step 2: Navigate and pull code
+cd /var/www/resort/Resort_first
+git remote set-url origin https://github.com/teqmatessolutions-gif/pomma-latest.git
+git pull origin main
+
+# Step 3: Run database migration
+cd ResortApp
+source venv/bin/activate
+python3 migrate_database.py
+
+# Step 4: Update Python dependencies
+pip install -r requirements.txt --upgrade
+
+# Step 5: Build Dashboard
+cd ../dasboard
+npm install --legacy-peer-deps
+npm run build
+
+# Step 6: Build Userend
+cd ../userend/userend
+npm install --legacy-peer-deps
+npm run build
+
+# Step 7: Restart services
+cd /var/www/resort/Resort_first/ResortApp
+systemctl restart resort.service
+systemctl restart nginx
+
+# Step 8: Verify
+systemctl status resort.service
+systemctl status nginx
+
+# ============================================
+# OPTION 3: One-Line Command (Copy & Paste)
+# ============================================
+
+ssh root@139.84.211.200 "cd /var/www/resort/Resort_first && git pull origin main && cd ResortApp && source venv/bin/activate && python3 migrate_database.py && pip install -r requirements.txt --upgrade && cd ../dasboard && npm install --legacy-peer-deps && npm run build && cd ../userend/userend && npm install --legacy-peer-deps && npm run build && cd /var/www/resort/Resort_first/ResortApp && systemctl restart resort.service && systemctl restart nginx"
+
+# ============================================
+# VERIFICATION COMMANDS
+# ============================================
+
+# Check service status
+ssh root@139.84.211.200 "systemctl status resort.service"
+
+# View recent logs
+ssh root@139.84.211.200 "journalctl -u resort.service -n 50"
+
+# Check nginx status
+ssh root@139.84.211.200 "systemctl status nginx"
+
+# Test API (if accessible)
+curl https://teqmates.com/api/health
+
+# ============================================
+# TROUBLESHOOTING
+# ============================================
+
+# If service name is different (pommoapi.service):
+ssh root@139.84.211.200 "systemctl restart pommoapi.service"
+
+# If project directory is different:
+# Update PROJECT_DIR in commands above
+
+# View full logs:
+ssh root@139.84.211.200 "journalctl -u resort.service -f"
+
+# Check nginx errors:
+ssh root@139.84.211.200 "tail -f /var/log/nginx/error.log"
+
