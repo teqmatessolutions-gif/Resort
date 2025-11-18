@@ -17,7 +17,13 @@ def get_db():
 
 @router.post("", response_model=RoleOut)
 def create_new_role(role: RoleCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
-    if user.role.name != "admin":
+    if not user.role or user.role.name != "admin":
+        raise HTTPException(status_code=403, detail="Only admin can create roles")
+    return crud_role.create_role(db, role)
+
+@router.post("/", response_model=RoleOut)  # Handle trailing slash
+def create_new_role_slash(role: RoleCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
+    if not user.role or user.role.name != "admin":
         raise HTTPException(status_code=403, detail="Only admin can create roles")
     return crud_role.create_role(db, role)
 
@@ -28,7 +34,7 @@ def list_roles(db: Session = Depends(get_db), skip: int = 0, limit: int = 20):
 
 @router.put("/{role_id}", response_model=RoleOut)
 def update_existing_role(role_id: int, role: RoleCreate, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
-    if user.role.name != "admin":
+    if not user.role or user.role.name != "admin":
         raise HTTPException(status_code=403, detail="Only admin can update roles")
     updated_role = crud_role.update_role(db, role_id, role)
     if not updated_role:
@@ -37,7 +43,7 @@ def update_existing_role(role_id: int, role: RoleCreate, db: Session = Depends(g
 
 @router.delete("/{role_id}")
 def delete_existing_role(role_id: int, db: Session = Depends(get_db), user: User = Depends(get_current_user)):
-    if user.role.name != "admin":
+    if not user.role or user.role.name != "admin":
         raise HTTPException(status_code=403, detail="Only admin can delete roles")
     success = crud_role.delete_role(db, role_id)
     if not success:

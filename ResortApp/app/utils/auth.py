@@ -2,7 +2,7 @@ from datetime import datetime, timedelta
 from jose import JWTError, jwt
 import bcrypt
 from app.models.user import User
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from fastapi import Depends, HTTPException, status
 from app.database import SessionLocal
 from fastapi.security import OAuth2PasswordBearer
@@ -89,9 +89,14 @@ def get_current_user(
         print(f"ERROR in get_current_user (token decode): {str(e)}\n{traceback.format_exc()}")
         raise credentials_exception
     try:
-        user = db.query(User).filter(User.id == user_id).first()
+        user = db.query(User).options(joinedload(User.role)).filter(User.id == user_id).first()
         if user is None:
             raise credentials_exception
+        if user.role is None:
+            raise HTTPException(
+                status_code=status.HTTP_403_FORBIDDEN,
+                detail="User role not found. Please contact administrator."
+            )
         return user
     except HTTPException:
         # Re-raise HTTP exceptions
