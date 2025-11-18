@@ -22,7 +22,7 @@ import {
   Briefcase,
   Sun,
 } from "lucide-react";
-import jwt_decode from "https://cdn.jsdelivr.net/npm/jwt-decode@3.1.2/build/jwt-decode.esm.js";
+import { jwtDecode } from "jwt-decode";
 import pommaLogo from "../assets/pommalogo.png";
 
 import { CreditCard } from "lucide-react";
@@ -98,7 +98,7 @@ const getUserPermissions = () => {
     return { role: 'guest', permissions: [], user: null };
   }
   try {
-    const decodedUser = jwt_decode(token);
+    const decodedUser = jwtDecode(token);
     return {
       role: decodedUser?.role || 'guest',
       permissions: decodedUser?.permissions || [],
