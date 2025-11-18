@@ -310,12 +310,20 @@ const Dashboard = () => {
     );
   }
 
+  // Show error message if there's an error
   if (err) {
     return (
       <DashboardLayout>
         <div className="max-w-7xl mx-auto px-4 py-10">
-          <div className="p-4 bg-red-50 text-red-700 border border-red-200 rounded-xl">
-            {err}
+          <div className="bg-red-50 border border-red-200 rounded-xl p-6">
+            <h2 className="text-xl font-bold text-red-800 mb-2">Error Loading Dashboard</h2>
+            <p className="text-red-600">{err}</p>
+            <button 
+              onClick={() => { setErr(null); fetchDashboardData(); }}
+              className="mt-4 px-4 py-2 bg-red-600 text-white rounded hover:bg-red-700"
+            >
+              Retry
+            </button>
           </div>
         </div>
       </DashboardLayout>
