@@ -346,18 +346,22 @@ def _calculate_bill_for_single_room(db: Session, room_number: str):
     charges.service_items = [{"service_name": ass.service.name, "charges": ass.service.charges} for ass in unbilled_services]
     
     # Calculate GST
-    # Room charges: 12% GST if <= 7500, 18% GST if > 7500
+    # Room charges: 5% GST if < 5000, 12% GST if 5000-7500, 18% GST if > 7500
     room_charge_amount = charges.room_charges or 0
     if room_charge_amount > 0:
-        if room_charge_amount <= 7500:
+        if room_charge_amount < 5000:
+            charges.room_gst = room_charge_amount * 0.05
+        elif room_charge_amount <= 7500:
             charges.room_gst = room_charge_amount * 0.12
         else:
             charges.room_gst = room_charge_amount * 0.18
     
-    # Package charges: Same rule as room charges (12% if <= 7500, 18% if > 7500)
+    # Package charges: Same rule as room charges (5% if < 5000, 12% if 5000-7500, 18% if > 7500)
     package_charge_amount = charges.package_charges or 0
     if package_charge_amount > 0:
-        if package_charge_amount <= 7500:
+        if package_charge_amount < 5000:
+            charges.package_gst = package_charge_amount * 0.05
+        elif package_charge_amount <= 7500:
             charges.package_gst = package_charge_amount * 0.12
         else:
             charges.package_gst = package_charge_amount * 0.18
