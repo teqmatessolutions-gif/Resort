@@ -1003,10 +1003,16 @@ const Billing = () => {
                   <p className="text-sm text-gray-600">Subtotal: {formatCurrency(billData.charges.total_due)}</p>
                   {/* GST Breakdown */}
                   {billData.charges.room_gst > 0 && (
-                    <p className="text-xs text-gray-500">Room GST ({billData.charges.room_charges <= 7500 ? '12%' : '18%'}): +{formatCurrency(billData.charges.room_gst || 0)}</p>
+                    <p className="text-xs text-gray-500">Room GST ({
+                      billData.charges.room_charges < 5000 ? '5%' : 
+                      billData.charges.room_charges <= 7500 ? '12%' : '18%'
+                    }): +{formatCurrency(billData.charges.room_gst || 0)}</p>
                   )}
                   {billData.charges.package_gst > 0 && (
-                    <p className="text-xs text-gray-500">Package GST ({billData.charges.package_charges <= 7500 ? '12%' : '18%'}): +{formatCurrency(billData.charges.package_gst || 0)}</p>
+                    <p className="text-xs text-gray-500">Package GST ({
+                      billData.charges.package_charges < 5000 ? '5%' : 
+                      billData.charges.package_charges <= 7500 ? '12%' : '18%'
+                    }): +{formatCurrency(billData.charges.package_gst || 0)}</p>
                   )}
                   {billData.charges.food_gst > 0 && (
                     <p className="text-xs text-gray-500">Food GST (5%): +{formatCurrency(billData.charges.food_gst || 0)}</p>
