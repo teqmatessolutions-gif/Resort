@@ -27,6 +27,9 @@ const getRouterBasename = () => {
     return "/admin";
   }
   const path = window.location.pathname || "";
+  if (path.startsWith("/orchidadmin")) {
+    return "/orchidadmin";
+  }
   if (path.startsWith("/pommaadmin")) {
     return "/pommaadmin";
   }
