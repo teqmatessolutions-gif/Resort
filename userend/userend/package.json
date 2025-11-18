@@ -1,5 +1,5 @@
 {
-  "name": "teqmates-resort-userend",
+  "name": "orchid-resort-userend",
   "version": "1.0.0",
   "private": true,
   "dependencies": {
@@ -85,5 +85,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": "/pommaholidays"
+  "homepage": "/orchid"
 }

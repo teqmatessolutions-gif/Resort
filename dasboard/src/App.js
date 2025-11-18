@@ -27,11 +27,17 @@ const getRouterBasename = () => {
     return "/admin";
   }
   const path = window.location.pathname || "";
+  // Check path first to determine basename, even on localhost
   if (path.startsWith("/orchidadmin")) {
     return "/orchidadmin";
   }
   if (path.startsWith("/pommaadmin")) {
     return "/pommaadmin";
+  }
+  // For local development without path prefix, use empty basename
+  const hostname = window.location.hostname || "";
+  if (hostname === "localhost" || hostname === "127.0.0.1") {
+    return "";
   }
   return "/admin";
 };

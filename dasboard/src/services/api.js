@@ -3,8 +3,10 @@ import axios from "axios";
 import { getApiBaseUrl } from "../utils/env";
 
 // Set your backend API base URL
+const apiBaseUrl = getApiBaseUrl();
+console.log("API Base URL:", apiBaseUrl); // Debug log
 const API = axios.create({
-  baseURL: getApiBaseUrl(),
+  baseURL: apiBaseUrl,
   timeout: 30000, // 30 second timeout
 });
 
@@ -12,6 +14,7 @@ const API = axios.create({
 API.interceptors.request.use((req) => {
   const token = localStorage.getItem("token");
   if (token) req.headers.Authorization = `Bearer ${token}`;
+  console.log("API Request:", req.method, req.url, "Base URL:", req.baseURL);
   return req;
 });
 
@@ -32,9 +35,12 @@ API.interceptors.response.use(
     // Handle network errors
     if (!error.response) {
       console.error("Network error:", error.message);
+      console.error("Request URL:", error.config?.url);
+      console.error("Base URL:", error.config?.baseURL);
+      console.error("Full error:", error);
       return Promise.reject({
         ...error,
-        message: "Network error. Please check your connection.",
+        message: `Network error. Please check your connection. (${error.message || 'Unable to reach server'})`,
         isNetworkError: true,
       });
     }

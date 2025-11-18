@@ -302,16 +302,16 @@ const themes = {
         chatModelText: "text-stone-900",
         chatLoaderBg: "bg-stone-600",
     },
-    pomma: {
-        id: 'pomma',
-        name: 'Pomma',
+    orchid: {
+        id: 'orchid',
+        name: 'Orchid',
         icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-leaf"><path d="M2 13c3.5-3.5 12-5 18 0 0 0-4 4-8 8s-8-4-10-6z"/></svg>,
-        bgPrimary: "bg-[#f9f4ea]",
-        bgSecondary: "bg-[#f1e7d8]",
+        bgPrimary: "bg-[#faf8f5]",
+        bgSecondary: "bg-[#e8f5e9]",
         bgCard: "bg-white/95",
-        textPrimary: "text-[#153a2c]",
-        textSecondary: "text-[#4f6f62]",
-        textAccent: "text-[#c99c4e]",
+        textPrimary: "text-[#2d3748]",
+        textSecondary: "text-[#718096]",
+        textAccent: "text-[#8bc34a]",
         textCardPrimary: "text-[#153a2c]",
         textCardSecondary: "text-[#4f6f62]",
         textCardAccent: "text-[#c99c4e]",
@@ -319,9 +319,9 @@ const themes = {
         border: "border-[#d6c8ab]",
         cardBorder: "border-[#e2d6c0]",
         borderHover: "hover:border-[#c99c4e]/60",
-        buttonBg: "bg-gradient-to-r from-[#0f5132] to-[#1a7042]",
+        buttonBg: "bg-gradient-to-r from-[#2d5016] to-[#8bc34a]",
         buttonText: "text-white",
-        buttonHover: "hover:from-[#136640] hover:to-[#218051]",
+        buttonHover: "hover:from-[#7cb342] hover:to-[#689f38]",
         placeholderBg: "bg-[#f4ebda]",
         placeholderText: "text-[#6e8579]",
         chatBg: "bg-white/90",
@@ -329,7 +329,7 @@ const themes = {
         chatInputBorder: "border-[#d9c9ac]",
         chatInputBg: "bg-[#f7efe0]",
         chatInputPlaceholder: "placeholder-[#6e8579]",
-        chatUserBg: "bg-gradient-to-r from-[#0f5132] to-[#1a7042]",
+        chatUserBg: "bg-gradient-to-r from-[#2d5016] to-[#8bc34a]",
         chatUserText: "text-white",
         chatModelBg: "bg-[#f7efe0]",
         chatModelText: "text-[#153a2c]",
@@ -526,17 +526,17 @@ const BackgroundAnimation = ({ theme }) => {
     return (
         <>
             <style>{`
-                /* Pomma Holidays Inspired Typography & Colors */
+                /* Orchid Resort Inspired Typography & Colors */
                 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
                 
                 :root {
                     --font-display: 'Cormorant Garamond', serif;
                     --font-body: 'Poppins', sans-serif;
-                    --color-pomma-forest: #0f5132;
-                    --color-pomma-forest-dark: #0c3d26;
-                    --color-pomma-fern: #1a7042;
-                    --color-pomma-gold: #c99c4e;
-                    --color-pomma-cream: #f9f4ea;
+                    --color-orchid-forest: #2d5016;
+                    --color-orchid-forest-dark: #1b3009;
+                    --color-orchid-fern: #8bc34a;
+                    --color-orchid-gold: #7cb342;
+                    --color-orchid-cream: #faf8f5;
                 }
                 
                 * {
@@ -547,8 +547,8 @@ const BackgroundAnimation = ({ theme }) => {
                     font-family: var(--font-body);
                     font-weight: 400;
                     letter-spacing: 0.01em;
-                    background-color: var(--color-pomma-cream);
-                    color: var(--color-pomma-forest-dark);
+                    background-color: var(--color-orchid-cream);
+                    color: var(--color-orchid-forest-dark);
                     overflow-x: hidden;
                 }
                 
@@ -558,7 +558,7 @@ const BackgroundAnimation = ({ theme }) => {
                     letter-spacing: -0.015em;
                     max-width: 100%;
                     word-wrap: break-word;
-                    color: var(--color-pomma-forest-dark);
+                    color: var(--color-orchid-forest-dark);
                 }
                 
                 section {
@@ -593,7 +593,7 @@ const BackgroundAnimation = ({ theme }) => {
                     }
                 }
                 
-                /* Pomma Holidays Premium Styling */
+                /* Orchid Resort Premium Styling */
                 .luxury-card {
                     border-radius: 1rem;
                     box-shadow: 0 6px 24px -8px rgba(12, 61, 38, 0.25);
@@ -754,8 +754,8 @@ export default function App() {
             }
         }
 
-        addCandidate("https://pommaholidays.com/wp-content/uploads/2024/04/logo-1.png");
-        addCandidate("https://pommaholidays.com/wp-content/uploads/2024/03/logo-1.png");
+        // Logo candidates for Orchid Resort
+        // addCandidate("https://orchidresort.com/logo.png");
 
         return candidates;
     }, []);
@@ -855,8 +855,8 @@ export default function App() {
         return () => clearTimeout(timer);
     }, [loading]);
 
-    // Use Pomma Holidays inspired theme palette
-    const currentTheme = 'pomma';
+    // Use Orchid Resort inspired theme palette
+    const currentTheme = 'orchid';
     const theme = themes[currentTheme];
 
     const bannerRef = useRef(null);
@@ -1013,35 +1013,35 @@ export default function App() {
                     const res = await fetch(`${API_BASE_URL}${endpoint}`);
                     if (!res.ok) {
                         console.warn(`Endpoint ${endpoint} returned ${res.status}`);
-                        return fallback;
+                        return { data: fallback, error: true };
                     }
-                    return await res.json();
+                    return { data: await res.json(), error: false };
                 } catch (e) {
                     console.warn(`Failed to fetch ${endpoint}:`, e);
-                    return fallback;
+                    return { data: fallback, error: true };
                 }
             };
 
             try {
                 // Essential data for layout
-                const roomsData = await safeFetch("/rooms/test", []);
-                const bookingsData = await safeFetch("/bookings?limit=500&skip=0", { bookings: [] });
-                const packageBookingsData = await safeFetch("/packages/bookingsall?limit=500&skip=0", []);
-                const resortInfoData = await safeFetch("/resort-info/", []);
+                const roomsResult = await safeFetch("/rooms/test", []);
+                const bookingsResult = await safeFetch("/bookings?limit=500&skip=0", { bookings: [] });
+                const packageBookingsResult = await safeFetch("/packages/bookingsall?limit=500&skip=0", []);
+                const resortInfoResult = await safeFetch("/resort-info/", []);
 
                 // Non‑critical / image-heavy endpoints – errors should not break the page
                 const [
-                    foodItemsData,
-                    foodCategoriesData,
-                    packagesData,
-                    galleryData,
-                    reviewsData,
-                    bannerData,
-                    servicesData,
-                    signatureExperiencesData,
-                    planWeddingsData,
-                    nearbyAttractionsData,
-                    nearbyAttractionBannersData,
+                    foodItemsResult,
+                    foodCategoriesResult,
+                    packagesResult,
+                    galleryResult,
+                    reviewsResult,
+                    bannerResult,
+                    servicesResult,
+                    signatureExperiencesResult,
+                    planWeddingsResult,
+                    nearbyAttractionsResult,
+                    nearbyAttractionBannersResult,
                 ] = await Promise.all([
                     safeFetch("/food-items/", []),
                     safeFetch("/food-categories/", []),
@@ -1056,25 +1056,30 @@ export default function App() {
                     safeFetch("/nearby-attraction-banners/", []),
                 ]);
 
+                const roomsData = roomsResult.data;
+                const bookingsData = bookingsResult.data;
+                const packageBookingsData = packageBookingsResult.data;
+                const resortInfoData = resortInfoResult.data;
+
                 setAllRooms(roomsData);
                 // Don't set rooms here - only show after dates are selected
                 setBookings(bookingsData.bookings || []);
                 setPackageBookings(packageBookingsData || []);
-                setServices(servicesData || []);
-                setFoodItems(foodItemsData);
-                setFoodCategories(foodCategoriesData || []);
-                setPackages(packagesData);
+                setServices(servicesResult.data || []);
+                setFoodItems(foodItemsResult.data);
+                setFoodCategories(foodCategoriesResult.data || []);
+                setPackages(packagesResult.data);
                 setResortInfo(resortInfoData.length > 0 ? resortInfoData[0] : null);
-                setGalleryImages(galleryData || []);
-                setReviews(reviewsData || []);
-                setBannerData((bannerData || []).filter((b) => b.is_active));
-                setSignatureExperiences(signatureExperiencesData || []);
-                setPlanWeddings(planWeddingsData || []);
-                setNearbyAttractions(nearbyAttractionsData || []);
-                setNearbyAttractionBanners(nearbyAttractionBannersData || []);
+                setGalleryImages(galleryResult.data || []);
+                setReviews(reviewsResult.data || []);
+                setBannerData((bannerResult.data || []).filter((b) => b.is_active));
+                setSignatureExperiences(signatureExperiencesResult.data || []);
+                setPlanWeddings(planWeddingsResult.data || []);
+                setNearbyAttractions(nearbyAttractionsResult.data || []);
+                setNearbyAttractionBanners(nearbyAttractionBannersResult.data || []);
 
-                // Only set a global error if even the core resort info is missing
-                if (!roomsData.length && !resortInfoData.length) {
+                // Only set a global error if the API calls actually failed (not just empty data)
+                if (roomsResult.error && resortInfoResult.error) {
                     setError(
                         "Unable to load resort details. Please ensure the backend server is running and accessible."
                     );
@@ -1929,23 +1934,23 @@ export default function App() {
 
     if (loading) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-[#f9f4ea]">
+            <div className="min-h-screen flex items-center justify-center bg-transparent">
                 <div className="flex flex-col items-center space-y-6">
                     <div className="relative">
-                        <div className="w-28 h-28 md:w-32 md:h-32 rounded-full border-4 border-[#c99c4e]/30 border-t-[#c99c4e] animate-spin" />
-                        <div className="absolute inset-3 md:inset-4 rounded-full bg-white flex items-center justify-center shadow-lg">
+                        <div className="w-28 h-28 md:w-32 md:h-32 rounded-full border-4 border-[#d4af37]/30 border-t-[#d4af37] animate-spin shadow-lg" />
+                        <div className="absolute inset-3 md:inset-4 rounded-full bg-green-500 flex items-center justify-center shadow-2xl border-2 border-[#d4af37]/20">
                             <img
                                 src={logoSrc || localLogo}
-                                alt="Pomma Holidays"
-                                className="h-12 w-auto md:h-14 object-contain"
+                                alt="Orchid Resort"
+                                className="h-16 w-auto md:h-20 object-contain"
                             />
                         </div>
                     </div>
                     <div className="text-center">
-                        <p className="text-xs md:text-sm tracking-[0.25em] uppercase text-[#c99c4e]">
-                            PommaHolidays
+                        <p className="text-xs md:text-sm tracking-[0.25em] uppercase text-[#d4af37] font-bold">
+                            Orchid Resort
                         </p>
-                        <p className="mt-2 text-xs md:text-sm text-[#4f6f62]">
+                        <p className="mt-2 text-xs md:text-sm text-gray-700">
                             Crafting your perfect stay...
                         </p>
                     </div>
@@ -2011,26 +2016,28 @@ export default function App() {
                     </div>
                 )}
                 
-                <header className={`fixed left-0 right-0 z-50 bg-gradient-to-r from-[#0f5132] to-[#1a7042] shadow-lg h-20 ${bannerMessage.text ? 'top-16' : 'top-0'} transition-all duration-300`} style={{ boxShadow: '0 4px 6px -1px rgba(15, 81, 50, 0.3), 0 2px 4px -1px rgba(26, 112, 66, 0.2)' }}>
-                    <div className="container mx-auto px-4 sm:px-6 md:px-12 h-full flex items-center justify-between text-white">
-                <div className="flex items-center space-x-3 text-white h-full">
-                            <img 
-                                src={logoSrc} 
-                                alt="Pomma Holidays logo" 
-                        className="w-40 h-full object-contain"
-                                loading="lazy"
-                                onError={() => {
-                                    setLogoIndex((prev) => {
-                                        const next = prev + 1;
-                                        return next < logoCandidates.length ? next : prev;
-                                    });
-                                }}
-                            />
+                <header className={`fixed left-0 right-0 z-50 bg-transparent h-24 ${bannerMessage.text ? 'top-16' : 'top-0'} transition-all duration-300`}>
+                    <div className="container mx-auto px-4 sm:px-6 md:px-12 h-full flex items-center justify-between">
+                        <div className="flex items-center space-x-3 h-full">
+                            <div className="p-4 rounded-xl flex items-center justify-center shadow-lg border-2 bg-gradient-to-br from-gray-800 via-gray-900 to-black" style={{ borderColor: 'rgba(212, 175, 55, 0.3)' }}>
+                                <img 
+                                    src={logoSrc} 
+                                    alt="Orchid Resort logo" 
+                                    className="h-12 w-auto object-contain drop-shadow-md"
+                                    loading="lazy"
+                                    onError={() => {
+                                        setLogoIndex((prev) => {
+                                            const next = prev + 1;
+                                            return next < logoCandidates.length ? next : prev;
+                                        });
+                                    }}
+                                />
+                            </div>
                         </div>
                         <nav className="flex items-center space-x-4">
                             <button 
                                 onClick={() => { setShowAmenities(false); setIsGeneralBookingOpen(true); }} 
-                                className="px-6 py-3 text-sm font-semibold text-white bg-gradient-to-r from-[#0f5132] to-[#1a7042] rounded-full shadow-lg hover:from-[#136640] hover:to-[#218051] transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#c99c4e]"
+                                className="px-8 py-3.5 text-sm font-bold text-[#1a472a] bg-gradient-to-r from-[#d4af37] via-[#f4d03f] to-[#d4af37] rounded-lg shadow-xl hover:shadow-2xl hover:from-[#f4d03f] hover:via-[#ffd700] hover:to-[#f4d03f] transition-all duration-300 transform hover:scale-105 border-2 border-[#b8941f] uppercase tracking-wider focus:outline-none focus:ring-4 focus:ring-[#d4af37]/50"
                             >
                                 Book Now
                             </button>
@@ -2039,91 +2046,104 @@ export default function App() {
                 </header>
 
                 <main className="w-full max-w-full pt-0 space-y-0 relative z-10 overflow-hidden">
-                  {/* Luxury Hero Banner Section */}
+                  {/* Hero Banner Section - Image Only */}
 <div
   ref={bannerRef}
-  className="relative w-full h-screen overflow-hidden"
+  className="relative w-full h-screen overflow-hidden bg-white"
 >
                 {bannerData.length > 0 ? (
-                        <>
-            {/* Banner Images with Fade Transition and Slow Movement */}
-            {bannerData.map((banner, index) => (
-                <img
-                    key={banner.id}
-                    src={getImageUrl(banner.image_url)}
-                    onError={(e) => { e.target.src = ITEM_PLACEHOLDER; console.error('Banner image failed to load:', banner.image_url); }}
-                    alt={banner.title}
-                    className={`absolute inset-0 w-[110%] h-[110%] object-cover object-center transition-all duration-[10000ms] ease-in-out ${index === currentBannerIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-110'} animate-[slow-pan_20s_ease-in-out_infinite]`}
-                    style={{
-                        animationDelay: `${index * 2}s`,
-                        animationDirection: index % 2 === 0 ? 'alternate' : 'alternate-reverse'
-                    }}
-                />
-            ))}
+                    <>
+                        {/* Banner Images Background */}
+                        {bannerData.map((banner, index) => (
+                            <img
+                                key={banner.id}
+                                src={getImageUrl(banner.image_url)}
+                                onError={(e) => { e.target.src = ITEM_PLACEHOLDER; }}
+                                alt={banner.title}
+                                className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 ${index === currentBannerIndex ? 'opacity-100' : 'opacity-0'}`}
+                            />
+                        ))}
+                    </>
+                ) : (
+                    <div className="absolute inset-0 bg-gray-100"></div>
+                )}
 
-            {/* Luxury Gradient Overlay with Premium Content */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#0c3d26]/60 via-[#0f5132]/30 to-transparent flex items-center justify-center text-center px-6">
-                <div className="relative w-full max-w-5xl">
-                    {bannerData.map((banner, index) => (
-                        <div key={banner.id} className={`absolute inset-0 flex flex-col items-center justify-center transition-all duration-1000 ease-in-out ${index === currentBannerIndex ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                            <div className="mb-4 inline-block px-6 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/30 animate-[fadeInUp_1s_ease-out]">
-                                <span className="text-[#0f5132] text-sm font-semibold tracking-[0.35em] uppercase">
-                                    ✦ Nature Meets Luxury ✦
-                                </span>
-                            </div>
-                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-extrabold tracking-tight leading-tight drop-shadow-2xl text-white mb-6 animate-[fadeInUp_1.2s_ease-out]">
-                                <span className="bg-gradient-to-r from-white via-[#f5e6c9] to-white bg-clip-text text-transparent inline-block animate-[gentle-glow_3s_ease-in-out_infinite]">
-                                    {banner.title}
-                                </span>
-                            </h1>
-                            <p className="mt-4 text-xl md:text-2xl text-[#f5ece0] max-w-4xl mx-auto leading-relaxed drop-shadow-lg px-4 animate-[fadeInUp_1.4s_ease-out]">
-                                {banner.subtitle}
-                            </p>
-                            <div className="mt-10 flex flex-wrap justify-center gap-4 animate-[fadeInUp_1.6s_ease-out]">
-                                <button
-                                    type="button"
-                                    onClick={() => { setShowAmenities(false); setIsGeneralBookingOpen(true); }}
-                                    className="group px-10 py-4 bg-gradient-to-r from-[#0f5132] to-[#1a7042] text-white font-semibold text-lg rounded-full shadow-2xl hover:from-[#136640] hover:to-[#218051] transition-all duration-300 transform hover:scale-110 hover:shadow-[0_20px_45px_rgba(12,61,38,0.45)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#d8b471]/60 focus:ring-offset-[#0f5132] animate-[gentle-pulse_2s_ease-in-out_infinite]"
-                                >
-                                    <span className="flex items-center gap-2">
-                                        Book Your Stay
-                                        <ChevronRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                {/* Hero Content */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-10">
+                    <div className="max-w-5xl mx-auto">
+                        {/* Contact Info */}
+                        {resortInfo && (
+                            <div className="flex flex-wrap items-center justify-center gap-6 md:gap-8 mb-10 text-white text-sm md:text-base drop-shadow-lg">
+                                {resortInfo.email && (
+                                    <span className="flex items-center gap-2 px-4 py-2 bg-black/50 backdrop-blur-sm rounded-lg border border-white/20 shadow-md">
+                                        <span className="text-white">✉</span>
+                                        {resortInfo.email}
                                     </span>
-                                </button>
-                                <a href="#packages" className="px-10 py-4 bg-white/10 backdrop-blur-sm text-white font-semibold text-lg rounded-full border-2 border-white/40 hover:bg-white/20 transition-all duration-300">
-                                    View Packages
-                                </a>
+                                )}
+                                {resortInfo.phone && (
+                                    <span className="flex items-center gap-2 px-4 py-2 bg-black/50 backdrop-blur-sm rounded-lg border border-white/20 shadow-md">
+                                        <span className="text-white">📞</span>
+                                        {resortInfo.phone}
+                                    </span>
+                                )}
                             </div>
-                        </div>
-                    ))}
+                        )}
+                        
+                        {/* Main Heading - Banner Title and Description */}
+                        {bannerData.length > 0 && bannerData[currentBannerIndex] && (
+                            <div className="mb-10">
+                                {bannerData[currentBannerIndex].title && (
+                                    <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold mb-4 leading-tight text-white drop-shadow-2xl">
+                                        {bannerData[currentBannerIndex].title}
+                                    </h1>
+                                )}
+                                {bannerData[currentBannerIndex].description && (
+                                    <p className="text-xl md:text-2xl lg:text-3xl font-medium leading-relaxed text-white/90 drop-shadow-lg">
+                                        {bannerData[currentBannerIndex].description}
+                                    </p>
+                                )}
+                            </div>
+                        )}
+                        {(!bannerData.length || !bannerData[currentBannerIndex]) && (
+                            <h1 className="text-4xl md:text-6xl lg:text-8xl font-extrabold mb-10 leading-tight text-white drop-shadow-2xl">
+                                Stay enjoying the cozy indoors
+                                <br />
+                                and tranquil outdoors.
+                            </h1>
+                        )}
+                    </div>
+                    
+                    {/* Book Now Button at Bottom */}
+                    <div className="absolute bottom-20 left-1/2 -translate-x-1/2">
+                        <button
+                            type="button"
+                            onClick={() => { setShowAmenities(false); setIsGeneralBookingOpen(true); }}
+                            className="px-12 py-5 bg-black/80 text-white font-bold text-lg md:text-xl rounded-xl shadow-2xl hover:bg-black/90 transition-all duration-300 transform hover:scale-105 border-2 border-white/30 uppercase tracking-wider backdrop-blur-sm"
+                        >
+                            Book Now
+                        </button>
+                    </div>
                 </div>
-            </div>
 
-            {/* Luxury Navigation Dots - Only show if multiple banners */}
-            {bannerData.length > 1 && (
-                <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex space-x-3 z-20">
-                {bannerData.map((_, index) => (
-                    <button
-                        key={index}
-                        onClick={() => setCurrentBannerIndex(index)}
-                        className={`transition-all duration-300 ${
-                            index === currentBannerIndex
-                                ? "w-12 h-1 bg-[#d8b471] rounded-full shadow-[0_0_12px_rgba(216,180,113,0.6)]"
-                                : "w-8 h-1 bg-white/40 hover:bg-white/70 rounded-full"
-                        }`}
-                    />
-                ))}
-            </div>
-            )}
-        </>
-    ) : (
-        <div className={`w-full h-full flex items-center justify-center ${theme.placeholderBg} ${theme.placeholderText}`}>
-            No banner images available.
-        </div>
-    )}
+                {/* Navigation Dots - Only show if multiple banners */}
+                {bannerData.length > 1 && (
+                    <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex space-x-3 z-20">
+                        {bannerData.map((_, index) => (
+                            <button
+                                key={index}
+                                onClick={() => setCurrentBannerIndex(index)}
+                                className={`transition-all duration-300 ${
+                                    index === currentBannerIndex
+                                        ? "w-12 h-1 bg-white rounded-full"
+                                        : "w-8 h-1 bg-white/40 hover:bg-white/70 rounded-full"
+                                }`}
+                            />
+                        ))}
+                    </div>
+                )}
 </div>
 
-                    {/* Exclusive Deals Section - Pomma Holidays Style */}
+                    {/* Exclusive Deals Section - Orchid Resort Style */}
                     <section id="packages" className="bg-gradient-to-b from-[#f4ede1] via-[#f9f4ea] to-white py-20 transition-colors duration-500">
                         <div className="w-full mx-auto px-2 sm:px-4 md:px-6">
                             {/* Section Header */}
@@ -2207,7 +2227,7 @@ export default function App() {
                                                         <div className="flex items-center justify-between flex-wrap gap-4">
                                                             <button
                                                                 onClick={() => handleOpenPackageBookingForm(featuredPkg.id)} 
-                                                                className="px-8 py-3 bg-gradient-to-r from-[#0f5132] to-[#1a7042] text-white font-semibold rounded-full shadow-lg hover:from-[#136640] hover:to-[#218051] transition-all duration-300 transform hover:scale-105 flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#c99c4e]/70"
+                                                                className="px-8 py-3 bg-gradient-to-r from-[#d4af37] via-[#f4d03f] to-[#d4af37] text-[#1a472a] font-bold rounded-lg shadow-xl hover:shadow-2xl hover:from-[#f4d03f] hover:via-[#ffd700] hover:to-[#f4d03f] transition-all duration-300 transform hover:scale-105 flex items-center gap-2 border-2 border-[#b8941f] uppercase tracking-wider focus:outline-none focus:ring-4 focus:ring-[#d4af37]/50"
                                                             >
                                                                 Book Now
                                                                 <ChevronRight className="w-5 h-5" />
@@ -2242,14 +2262,14 @@ export default function App() {
                                                         onError={(e) => { e.target.src = ITEM_PLACEHOLDER; }} 
                                                     />
                                                     {/* Price badge - always visible */}
-                                                    <div className="absolute bottom-3 left-3 bg-[#0f5132]/90 text-white font-extrabold text-lg px-3 py-1 rounded-lg shadow-md border border-white/20 backdrop-blur-sm">
+                                                    <div className="absolute bottom-3 left-3 bg-gradient-to-r from-[#d4af37]/95 to-[#f4d03f]/95 text-[#1a472a] font-extrabold text-lg px-3 py-1 rounded-lg shadow-xl border-2 border-[#b8941f]/50 backdrop-blur-sm">
                                                         {formatCurrency(pkg.price || 0)}
                                                     </div>
                                                             {/* Quick Book button overlay */}
                                                             <button
                                                                 type="button"
                                                                 onClick={(e) => { e.stopPropagation(); handleOpenPackageBookingForm(pkg.id); }}
-                                                                className="absolute top-3 right-3 bg-gradient-to-r from-[#0f5132] to-[#1a7042] text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md hover:from-[#136640] hover:to-[#218051]"
+                                                                className="absolute top-3 right-3 bg-gradient-to-r from-[#d4af37] via-[#f4d03f] to-[#d4af37] text-[#1a472a] text-xs font-bold px-3 py-1 rounded-lg shadow-lg hover:shadow-xl hover:from-[#f4d03f] hover:via-[#ffd700] hover:to-[#f4d03f] border border-[#b8941f] uppercase tracking-wide transition-all duration-300"
                                                             >
                                                                 Book Now
                                                             </button>
@@ -2293,7 +2313,7 @@ export default function App() {
                                                             <button 
                                                                     type="button"
                                                                     onClick={(e) => { e.stopPropagation(); handleOpenPackageBookingForm(pkg.id); }}
-                                                                    className="px-5 py-2 rounded-full bg-gradient-to-r from-[#0f5132] to-[#1a7042] text-white font-semibold shadow-md hover:from-[#136640] hover:to-[#218051] transition-all duration-300"
+                                                                    className="px-5 py-2 rounded-lg bg-gradient-to-r from-[#d4af37] via-[#f4d03f] to-[#d4af37] text-[#1a472a] font-bold shadow-lg hover:shadow-xl hover:from-[#f4d03f] hover:via-[#ffd700] hover:to-[#f4d03f] border border-[#b8941f] uppercase tracking-wide transition-all duration-300"
                                                             >
                                                                     Book Now
                                                             </button>
@@ -2514,10 +2534,10 @@ export default function App() {
                                                 <button 
                                                     onClick={() => handleOpenRoomBookingForm(room.id)} 
                                                     disabled={bookingData.check_in && bookingData.check_out && !roomAvailability[room.id]}
-                                                    className={`w-full mt-4 px-6 py-3 font-bold rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 ${
+                                                    className={`w-full mt-4 px-6 py-3 font-bold rounded-lg shadow-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center gap-2 uppercase tracking-wider ${
                                                         bookingData.check_in && bookingData.check_out && !roomAvailability[room.id]
                                                             ? 'bg-gray-400 text-gray-700 cursor-not-allowed opacity-50'
-                                                            : 'bg-gradient-to-r from-[#0f5132] to-[#1a7042] text-white hover:from-[#136640] hover:to-[#218051] hover:shadow-[0_18px_35px_rgba(12,61,38,0.35)]'
+                                                            : 'bg-gradient-to-r from-[#d4af37] via-[#f4d03f] to-[#d4af37] text-[#1a472a] border-2 border-[#b8941f] hover:from-[#f4d03f] hover:via-[#ffd700] hover:to-[#f4d03f] hover:shadow-[0_0_30px_rgba(212,175,55,0.6)]'
                                                     }`}
                                                 >
                                                     {bookingData.check_in && bookingData.check_out && !roomAvailability[room.id] ? 'Not Available' : 'Book Now'}
@@ -2539,7 +2559,7 @@ export default function App() {
                         </div>
                     </section>
 
-                    {/* Signature Experiences Section - Pomma Rooms Style */}
+                    {/* Signature Experiences Section - Orchid Resort Style */}
                     <section className="bg-gradient-to-b from-[#f4ede1] via-[#f9f4ea] to-white py-20 transition-colors duration-500">
                         <div className="w-full mx-auto px-2 sm:px-4 md:px-6">
                             {/* Section Header */}
@@ -3752,30 +3772,30 @@ export default function App() {
                     </div>
                 )}
                 
-                <footer className="bg-[#0f5132] text-white py-8 px-4 md:px-12 mt-12">
+                <footer className="bg-transparent text-white py-8 px-4 md:px-12 mt-12">
                     <div className="container mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
                         {resortInfo && (
                             <>
                                 <div className="text-center md:text-left">
-                                    <h3 className="text-xl font-bold tracking-tight text-white">{resortInfo.name}</h3>
-                                    <p className="text-sm text-white/80 mt-1">{resortInfo.address}</p>
-                                    <p className="text-xs text-white/70 mt-2">&copy; 2024 Elysian Retreat. All Rights Reserved.</p>
+                                    <h3 className="text-xl font-bold tracking-tight text-gray-800">{resortInfo.name}</h3>
+                                    <p className="text-sm text-gray-700 mt-1">{resortInfo.address}</p>
+                                    <p className="text-xs text-gray-600 mt-2">&copy; 2024 Elysian Retreat. All Rights Reserved.</p>
                                 </div>
-                                <div className="flex space-x-4 text-white/80">
-                                    <a href={formatUrl(resortInfo.facebook)} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors"><Facebook /></a>
-                                    <a href={formatUrl(resortInfo.instagram)} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors"><Instagram /></a>
-                                    <a href={formatUrl(resortInfo.twitter)} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors"><Twitter /></a>
-                                    <a href={formatUrl(resortInfo.linkedin)} target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors"><Linkedin /></a>
+                                <div className="flex space-x-4 text-gray-700">
+                                    <a href={formatUrl(resortInfo.facebook)} target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition-colors"><Facebook /></a>
+                                    <a href={formatUrl(resortInfo.instagram)} target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition-colors"><Instagram /></a>
+                                    <a href={formatUrl(resortInfo.twitter)} target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition-colors"><Twitter /></a>
+                                    <a href={formatUrl(resortInfo.linkedin)} target="_blank" rel="noopener noreferrer" className="hover:text-gray-900 transition-colors"><Linkedin /></a>
                                 </div>
                             </>
                         )}
                     </div>
-                    <div className="mt-6 pt-6 border-t border-white/20 text-center">
+                    <div className="mt-6 pt-6 border-t border-gray-300/20 text-center">
                         <a 
                             href="https://teqmates.com" 
                             target="_blank" 
                             rel="noopener noreferrer"
-                            className="text-sm text-white/70 hover:text-white transition-colors"
+                            className="text-sm text-gray-600 hover:text-gray-800 transition-colors"
                         >
                             Powered by <span className="font-semibold">TeqMates</span>
                         </a>

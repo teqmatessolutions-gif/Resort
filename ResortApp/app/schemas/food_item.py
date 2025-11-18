@@ -17,6 +17,13 @@ class FoodItemCreate(BaseModel):
     available: bool
     category_id: int
 
+class FoodItemUpdate(BaseModel):
+    name: Optional[str] = None
+    description: Optional[str] = None
+    price: Optional[float] = None
+    available: Optional[bool] = None
+    category_id: Optional[int] = None
+
 class FoodItemOut(BaseModel):
     id: int
     name: str

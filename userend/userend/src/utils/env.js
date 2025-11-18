@@ -15,6 +15,15 @@ export const isOrchidDeployment = () => {
 };
 
 export const getMediaBaseUrl = () => {
+  // For local development (localhost or 127.0.0.1), always use port 8000
+  if (typeof window !== "undefined") {
+    const hostname = window.location.hostname || "";
+    if (hostname === "localhost" || hostname === "127.0.0.1") {
+      return "http://localhost:8000";
+    }
+  }
+  
+  // For production deployments
   if (typeof window !== "undefined" && isOrchidDeployment()) {
     return `${window.location.origin}/orchidfiles`;
   }
@@ -30,6 +39,15 @@ export const getMediaBaseUrl = () => {
 };
 
 export const getApiBaseUrl = () => {
+  // For local development (localhost or 127.0.0.1), always use port 8000
+  if (typeof window !== "undefined") {
+    const hostname = window.location.hostname || "";
+    if (hostname === "localhost" || hostname === "127.0.0.1") {
+      return "http://localhost:8000/api";
+    }
+  }
+  
+  // For production deployments
   if (typeof window !== "undefined" && isOrchidDeployment()) {
     return `${window.location.origin}/orchidapi/api`;
   }
