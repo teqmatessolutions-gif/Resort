@@ -44,7 +44,9 @@ def create_access_token(data: dict, expires_delta: timedelta = None):
     to_encode = data.copy()
     expire = datetime.utcnow() + (expires_delta or timedelta(days=100))
     to_encode.update({"exp": expire})
-    return jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    encoded = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
+    # Handle both string and bytes return from jwt.encode (version compatibility)
+    return encoded.decode('utf-8') if isinstance(encoded, bytes) else encoded
 
 
 def decode_token(token: str):
