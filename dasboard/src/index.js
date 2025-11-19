@@ -61,5 +61,11 @@ if (document.readyState === 'loading') {
   makeDateInputsClickable();
 }
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(<App />);
+const rootElement = document.getElementById("root");
+if (!rootElement) {
+  console.error("Root element not found!");
+} else {
+  const root = ReactDOM.createRoot(rootElement);
+  root.render(<App />);
+  console.log("React app mounted successfully");
+}

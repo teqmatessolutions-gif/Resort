@@ -4,21 +4,41 @@ from dotenv import load_dotenv
 from pathlib import Path
 import os
 
-# Load .env file from the parent directory (ResortApp/.env)
+# Load .env file from multiple possible locations
+# Try ResortApp/.env first (parent directory of app/)
 env_path = Path(__file__).parent.parent / ".env"
-load_dotenv(dotenv_path=env_path)
+if env_path.exists():
+    load_dotenv(dotenv_path=env_path, override=True)
+    print(f"Loaded .env from: {env_path}")
 
-# Fallback: also try loading from current directory
+# Also try current working directory
 if not os.getenv("DATABASE_URL"):
-    load_dotenv()
+    current_dir = Path.cwd()
+    env_file = current_dir / ".env"
+    if env_file.exists():
+        load_dotenv(dotenv_path=env_file, override=True)
+        print(f"Loaded .env from: {env_file}")
+
+# Try loading from current directory as fallback
+if not os.getenv("DATABASE_URL"):
+    load_dotenv(override=True)
 
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
+
+# Check if DATABASE_URL is set
+if not SQLALCHEMY_DATABASE_URL:
+    raise ValueError(
+        "DATABASE_URL environment variable is not set. "
+        "Please create a .env file in ResortApp/ directory with: "
+        "DATABASE_URL=postgresql://user:password@localhost:5432/dbname"
+        " or DATABASE_URL=sqlite:///./resort.db for SQLite"
+    )
 
 # Add SSL parameters and connection pool settings to fix connection issues
 # Increased pool size for production stability
 # SQLite doesn't support sslmode, so we check if it's SQLite
 connect_args = {}
-if not SQLALCHEMY_DATABASE_URL.startswith("sqlite"):
+if SQLALCHEMY_DATABASE_URL and not SQLALCHEMY_DATABASE_URL.startswith("sqlite"):
     connect_args = {
         "sslmode": "disable",  # Disable SSL for local connections
         "connect_timeout": 10,  # Connection timeout in seconds

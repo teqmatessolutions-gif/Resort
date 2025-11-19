@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef, Fragment } from "react";
 import { Link, useLocation, Navigate } from "react-router-dom";
-import { AnimatePresence, motion, m } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { 
   Home,
   Users,
@@ -23,7 +23,7 @@ import {
   Sun,
 } from "lucide-react";
 import { jwtDecode } from "jwt-decode";
-import orchidLogo from "../assets/orchidlogo.png";
+import resortLogo from "../assets/logo.jpeg";
 
 import { CreditCard } from "lucide-react";
 
@@ -77,17 +77,17 @@ const themes = {
     '--primary-button-hover': '#b8945f',
     '--border-color': '#e8dcc6',
   },
-  'orchid': {
-    '--bg-primary': '#faf8f5', // Soft cream/ivory background
-    '--bg-secondary': '#ffffff',
-    '--text-primary': '#2d3748', // Deep charcoal
-    '--text-secondary': '#718096', // Medium gray
-    '--accent-bg': '#e8f5e9', // Light orchid green
-    '--accent-text': '#2d5016', // Deep forest green
-    '--bubble-color': 'rgba(139, 195, 74, 0.25)', // Soft orchid green bubbles
-    '--primary-button': '#8bc34a', // Fresh orchid green
-    '--primary-button-hover': '#7cb342', // Darker orchid green
-    '--border-color': '#c5e1a5', // Light orchid green border
+  'resort': {
+    '--bg-primary': '#ffffff', // White background
+    '--bg-secondary': '#fff7ed', // Warm white
+    '--text-primary': '#7c2d12', // Deep orange-brown
+    '--text-secondary': '#9a3412', // Medium orange-brown
+    '--accent-bg': '#ffedd5', // Light orange/amber
+    '--accent-text': '#d97706', // Golden orange
+    '--bubble-color': 'rgba(251, 191, 36, 0.25)', // Soft amber bubbles
+    '--primary-button': '#f59e0b', // Amber
+    '--primary-button-hover': '#d97706', // Darker amber
+    '--border-color': '#fed7aa', // Light orange border
   },
 };
 
@@ -147,7 +147,7 @@ export const ProtectedRoute = ({ children, requiredPermission }) => {
 export default function DashboardLayout({ children }) {
   const [collapsed, setCollapsed] = useState(false);
   const location = useLocation();
-  const [currentTheme, setCurrentTheme] = useState('orchid'); // Default theme - orchid
+  const [currentTheme, setCurrentTheme] = useState('resort'); // Default theme - resort
 
   // State and ref for managing scroll position
   const navRef = useRef(null);
@@ -160,9 +160,9 @@ export default function DashboardLayout({ children }) {
       setCurrentTheme(savedTheme);
       applyTheme(savedTheme);
     } else {
-      // Set orchid as default theme
-      setCurrentTheme('orchid');
-      applyTheme('orchid');
+      // Set resort as default theme
+      setCurrentTheme('resort');
+      applyTheme('resort');
     }
   }, []);
 
@@ -324,8 +324,8 @@ export default function DashboardLayout({ children }) {
           <div className="flex items-center justify-between p-6 border-b" style={{ borderColor: 'var(--accent-bg)' }}>
             {/* Left side: App Logo */}
             <div className="flex items-center gap-4">
-              <div className="p-4 rounded-xl flex items-center justify-center shadow-lg border-2 bg-gradient-to-br from-gray-800 via-gray-900 to-black" style={{ borderColor: 'var(--accent-bg)' }}>
-                <img src={orchidLogo} className="h-20 w-auto object-contain drop-shadow-md" alt="Orchid Resort Logo" />
+              <div className="p-4 rounded-xl flex items-center justify-center shadow-lg border-2 bg-gradient-to-br from-gray-800 via-gray-900 to-black w-full" style={{ borderColor: 'var(--accent-bg)' }}>
+                <img src={resortLogo} className="h-20 w-full max-w-full object-contain drop-shadow-md" alt="Resort Logo" />
               </div>
             </div>
             {/* Right side: Menu Toggle */}
@@ -341,13 +341,13 @@ export default function DashboardLayout({ children }) {
           {/* Theme Switcher UI with image previews */}
           <div className={`p-4 transition-all duration-300 flex justify-center gap-2 border-b`} style={{ borderColor: 'var(--accent-bg)' }}>
               <motion.button
-                  animate={{ scale: currentTheme === 'orchid' ? 1.15 : 1, y: currentTheme === 'orchid' ? -2 : 0 }}
+                  animate={{ scale: currentTheme === 'resort' ? 1.15 : 1, y: currentTheme === 'resort' ? -2 : 0 }}
                   whileHover={{ scale: 1.2, y: -2 }} whileTap={{ scale: 1.1 }} transition={{ type: 'spring', stiffness: 300 }}
-                  className={`w-8 h-8 rounded-full overflow-hidden ${currentTheme === 'orchid' ? 'shadow-lg border-2 border-[#8bc34a]' : ''}`}
-                  onClick={() => { setCurrentTheme('orchid'); applyTheme('orchid'); }}
-                  title="Orchid"
+                  className={`w-8 h-8 rounded-full overflow-hidden ${currentTheme === 'resort' ? 'shadow-lg border-2 border-amber-500' : ''}`}
+                  onClick={() => { setCurrentTheme('resort'); applyTheme('resort'); }}
+                  title="Resort"
               >
-                <img src={orchidLogo} alt="Orchid Theme" className="w-full h-full object-cover"/>
+                <img src={resortLogo} alt="Resort Theme" className="w-full h-full object-cover"/>
               </motion.button>
               <motion.button
                   animate={{ scale: currentTheme === 'eco-friendly' ? 1.15 : 1, y: currentTheme === 'eco-friendly' ? -2 : 0 }}

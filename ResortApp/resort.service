@@ -1,5 +1,5 @@
 [Unit]
-Description=Resort Management System - TeqMates
+Description=Resort Management System - TeqMates (Demo)
 After=network.target postgresql.service redis.service
 Wants=postgresql.service redis.service
 
@@ -7,11 +7,11 @@ Wants=postgresql.service redis.service
 Type=notify
 User=www-data
 Group=www-data
-WorkingDirectory=/var/www/resort/Resort_first/ResortApp
-Environment=PATH=/var/www/resort/venv/bin
-Environment=PYTHONPATH=/var/www/resort/Resort_first/ResortApp
-EnvironmentFile=/var/www/resort/Resort_first/ResortApp/.env.production
-ExecStart=/var/www/resort/venv/bin/gunicorn main:app -c gunicorn.conf.py
+WorkingDirectory=/var/www/resort/resort_production/ResortApp
+Environment=PATH=/var/www/resort/resort_production/ResortApp/venv/bin
+Environment=PYTHONPATH=/var/www/resort/resort_production/ResortApp
+EnvironmentFile=/var/www/resort/resort_production/ResortApp/.env
+ExecStart=/var/www/resort/resort_production/ResortApp/venv/bin/gunicorn main:app -c gunicorn.conf.py
 ExecReload=/bin/kill -s HUP $MAINPID
 KillMode=mixed
 TimeoutStopSec=5
@@ -23,8 +23,8 @@ RestartSec=10
 NoNewPrivileges=yes
 ProtectSystem=strict
 ProtectHome=yes
-ReadWritePaths=/var/www/resort/Resort_first/ResortApp/uploads
-ReadWritePaths=/var/www/resort/Resort_first/ResortApp/static
+ReadWritePaths=/var/www/resort/resort_production/ResortApp/uploads
+ReadWritePaths=/var/www/resort/resort_production/ResortApp/static
 ReadWritePaths=/var/log/resort
 ReadWritePaths=/var/run/resort
 

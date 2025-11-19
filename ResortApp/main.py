@@ -228,5 +228,14 @@ async def api_docs():
 
 if __name__ == "__main__":
     import uvicorn
-
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    from dotenv import load_dotenv
+    import os
+    
+    # Load environment variables
+    load_dotenv()
+    
+    # Get port from environment or default to 8012
+    port = int(os.getenv("PORT", 8012))
+    host = os.getenv("HOST", "0.0.0.0")
+    
+    uvicorn.run("main:app", host=host, port=port, reload=True)

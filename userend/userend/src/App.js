@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback, memo } from "react";
-import localLogo from "./assets/orchidlogo.png";
+import localLogo from "./assets/logo.jpeg";
 // Lucide React is used for elegant icons
 import { BedDouble, Coffee, ConciergeBell, Package, ChevronRight, ChevronLeft, ChevronDown, Image as ImageIcon, Star, Quote, ChevronUp, MessageSquare, Send, X, Facebook, Instagram, Linkedin, Twitter, Moon, Sun, Droplet } from 'lucide-react';
 import { SiGooglemaps } from "react-icons/si";
@@ -302,38 +302,38 @@ const themes = {
         chatModelText: "text-stone-900",
         chatLoaderBg: "bg-stone-600",
     },
-    orchid: {
-        id: 'orchid',
-        name: 'Orchid',
-        icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-leaf"><path d="M2 13c3.5-3.5 12-5 18 0 0 0-4 4-8 8s-8-4-10-6z"/></svg>,
-        bgPrimary: "bg-[#faf8f5]",
-        bgSecondary: "bg-[#e8f5e9]",
-        bgCard: "bg-white/95",
-        textPrimary: "text-[#2d3748]",
-        textSecondary: "text-[#718096]",
-        textAccent: "text-[#8bc34a]",
-        textCardPrimary: "text-[#153a2c]",
-        textCardSecondary: "text-[#4f6f62]",
-        textCardAccent: "text-[#c99c4e]",
-        textTitleGradient: "from-[#184f39] via-[#1f6945] to-[#2c8453]",
-        border: "border-[#d6c8ab]",
-        cardBorder: "border-[#e2d6c0]",
-        borderHover: "hover:border-[#c99c4e]/60",
-        buttonBg: "bg-gradient-to-r from-[#2d5016] to-[#8bc34a]",
+    resort: {
+        id: 'resort',
+        name: 'Resort',
+        icon: <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-sun"><path d="M12 2v2"/><path d="m5 10 1-1"/><path d="m19 10-1-1"/><path d="M12 16a6 6 0 0 0 0 12"/><path d="m3 16 1-1"/><path d="m21 16-1-1"/><path d="m8 20 2-2"/><path d="m16 20-2-2"/></svg>,
+        bgPrimary: "bg-white",
+        bgSecondary: "bg-orange-50",
+        bgCard: "bg-white",
+        textPrimary: "text-orange-900",
+        textSecondary: "text-orange-700",
+        textAccent: "text-amber-600",
+        textCardPrimary: "text-orange-900",
+        textCardSecondary: "text-orange-600",
+        textCardAccent: "text-amber-700",
+        textTitleGradient: "from-amber-600 via-orange-600 to-amber-800",
+        border: "border-orange-200",
+        cardBorder: "border-orange-100",
+        borderHover: "hover:border-amber-500/60",
+        buttonBg: "bg-gradient-to-r from-amber-500 to-orange-600",
         buttonText: "text-white",
-        buttonHover: "hover:from-[#7cb342] hover:to-[#689f38]",
-        placeholderBg: "bg-[#f4ebda]",
-        placeholderText: "text-[#6e8579]",
-        chatBg: "bg-white/90",
-        chatHeaderBg: "bg-[#f3e7d2]",
-        chatInputBorder: "border-[#d9c9ac]",
-        chatInputBg: "bg-[#f7efe0]",
-        chatInputPlaceholder: "placeholder-[#6e8579]",
-        chatUserBg: "bg-gradient-to-r from-[#2d5016] to-[#8bc34a]",
+        buttonHover: "hover:from-amber-400 hover:to-orange-500",
+        placeholderBg: "bg-orange-50",
+        placeholderText: "text-orange-400",
+        chatBg: "bg-white",
+        chatHeaderBg: "bg-orange-50",
+        chatInputBorder: "border-orange-200",
+        chatInputBg: "bg-orange-50",
+        chatInputPlaceholder: "placeholder-orange-400",
+        chatUserBg: "bg-gradient-to-r from-amber-500 to-orange-600",
         chatUserText: "text-white",
-        chatModelBg: "bg-[#f7efe0]",
-        chatModelText: "text-[#153a2c]",
-        chatLoaderBg: "bg-[#c99c4e]",
+        chatModelBg: "bg-orange-50",
+        chatModelText: "text-orange-900",
+        chatLoaderBg: "bg-amber-500",
     },
     grape: {
         id: 'grape',
@@ -526,17 +526,17 @@ const BackgroundAnimation = ({ theme }) => {
     return (
         <>
             <style>{`
-                /* Orchid Resort Inspired Typography & Colors */
+                /* Resort Golden Orange White Theme Typography & Colors */
                 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
                 
                 :root {
                     --font-display: 'Cormorant Garamond', serif;
                     --font-body: 'Poppins', sans-serif;
-                    --color-orchid-forest: #2d5016;
-                    --color-orchid-forest-dark: #1b3009;
-                    --color-orchid-fern: #8bc34a;
-                    --color-orchid-gold: #7cb342;
-                    --color-orchid-cream: #faf8f5;
+                    --color-resort-gold: #d97706;
+                    --color-resort-gold-dark: #b45309;
+                    --color-resort-orange: #ea580c;
+                    --color-resort-amber: #f59e0b;
+                    --color-resort-white: #ffffff;
                 }
                 
                 * {
@@ -547,8 +547,8 @@ const BackgroundAnimation = ({ theme }) => {
                     font-family: var(--font-body);
                     font-weight: 400;
                     letter-spacing: 0.01em;
-                    background-color: var(--color-orchid-cream);
-                    color: var(--color-orchid-forest-dark);
+                    background-color: var(--color-resort-white);
+                    color: var(--color-resort-gold-dark);
                     overflow-x: hidden;
                 }
                 
@@ -558,7 +558,7 @@ const BackgroundAnimation = ({ theme }) => {
                     letter-spacing: -0.015em;
                     max-width: 100%;
                     word-wrap: break-word;
-                    color: var(--color-orchid-forest-dark);
+                    color: var(--color-resort-gold-dark);
                 }
                 
                 section {
@@ -593,7 +593,7 @@ const BackgroundAnimation = ({ theme }) => {
                     }
                 }
                 
-                /* Orchid Resort Premium Styling */
+                /* Resort Premium Styling */
                 .luxury-card {
                     border-radius: 1rem;
                     box-shadow: 0 6px 24px -8px rgba(12, 61, 38, 0.25);
@@ -798,38 +798,38 @@ export default function App() {
 
         const publicUrl = process.env.PUBLIC_URL;
         if (publicUrl && publicUrl !== ".") {
-            addCandidate(`${publicUrl.replace(/\/$/, "")}/orchidlogo.png`);
+            addCandidate(`${publicUrl.replace(/\/$/, "")}/logo.jpeg`);
             addCandidate(`${publicUrl.replace(/\/$/, "")}/logo.png`);
         }
 
-        addCandidate("/orchidlogo.png");
+        addCandidate("/logo.jpeg");
         addCandidate("/logo.png");
-        addCandidate("/resort/orchidlogo.png");
+        addCandidate("/resort/logo.jpeg");
         addCandidate("/resort/logo.png");
 
         if (typeof window !== "undefined") {
             const origin = window.location.origin;
-            addCandidate(`${origin}/orchidlogo.png`);
+            addCandidate(`${origin}/logo.jpeg`);
             addCandidate(`${origin}/logo.png`);
-            addCandidate(`${origin}/resort/orchidlogo.png`);
+            addCandidate(`${origin}/resort/logo.jpeg`);
             addCandidate(`${origin}/resort/logo.png`);
             const { pathname } = window.location;
             if (pathname && pathname !== "/") {
                 const trimmedPath = pathname.endsWith("/") ? pathname.slice(0, -1) : pathname;
                 if (trimmedPath) {
-                    addCandidate(`${trimmedPath}/orchidlogo.png`);
+                    addCandidate(`${trimmedPath}/logo.jpeg`);
                     addCandidate(`${trimmedPath}/logo.png`);
                 }
                 const segments = pathname.split("/").filter(Boolean);
                 if (segments.length > 0) {
-                    addCandidate(`/${segments[0]}/orchidlogo.png`);
+                    addCandidate(`/${segments[0]}/logo.jpeg`);
                     addCandidate(`/${segments[0]}/logo.png`);
                 }
             }
         }
 
-        // Logo candidates for Orchid Resort
-        // addCandidate("https://orchidresort.com/logo.png");
+        // Logo candidates for Resort
+        // addCandidate("https://resort.com/logo.jpeg");
 
         return candidates;
     }, []);
@@ -929,8 +929,8 @@ export default function App() {
         return () => clearTimeout(timer);
     }, [loading]);
 
-    // Use Orchid Resort inspired theme palette
-    const currentTheme = 'orchid';
+    // Use Resort golden orange white theme palette
+    const currentTheme = 'resort';
     const theme = themes[currentTheme];
 
     const bannerRef = useRef(null);
@@ -2011,18 +2011,18 @@ export default function App() {
             <div className="min-h-screen flex items-center justify-center bg-transparent">
                 <div className="flex flex-col items-center space-y-6">
                     <div className="relative">
-                        <div className="w-28 h-28 md:w-32 md:h-32 rounded-full border-4 border-[#d4af37]/30 border-t-[#d4af37] animate-spin shadow-lg" />
-                        <div className="absolute inset-3 md:inset-4 rounded-full bg-green-500 flex items-center justify-center shadow-2xl border-2 border-[#d4af37]/20">
+                        <div className="w-28 h-28 md:w-32 md:h-32 rounded-full border-4 border-amber-400/30 border-t-amber-500 animate-spin shadow-lg" />
+                        <div className="absolute inset-3 md:inset-4 rounded-full bg-amber-500 flex items-center justify-center shadow-2xl border-2 border-amber-300/20">
                             <img
                                 src={logoSrc || localLogo}
-                                alt="Orchid Resort"
+                                alt="Resort"
                                 className="h-16 w-auto md:h-20 object-contain"
                             />
                         </div>
                     </div>
                     <div className="text-center">
-                        <p className="text-xs md:text-sm tracking-[0.25em] uppercase text-[#d4af37] font-bold">
-                            Orchid Trails Resort
+                        <p className="text-xs md:text-sm tracking-[0.25em] uppercase text-amber-600 font-bold">
+                            Resort
                         </p>
                         <p className="mt-2 text-xs md:text-sm text-gray-700">
                             Crafting your perfect stay...
@@ -2096,7 +2096,7 @@ export default function App() {
                             <div className="p-4 rounded-xl flex items-center justify-center shadow-lg border-2 bg-gradient-to-br from-gray-800 via-gray-900 to-black" style={{ borderColor: 'rgba(212, 175, 55, 0.3)' }}>
                                 <img 
                                     src={logoSrc} 
-                                    alt="Orchid Resort logo" 
+                                    alt="Resort logo" 
                                     className="h-12 w-auto object-contain drop-shadow-md"
                                     loading="lazy"
                                     onError={() => {
@@ -2217,7 +2217,7 @@ export default function App() {
                 )}
 </div>
 
-                    {/* Exclusive Deals Section - Orchid Resort Style */}
+                    {/* Exclusive Deals Section - Resort Style */}
                     <section id="packages" className="bg-gradient-to-b from-[#f4ede1] via-[#f9f4ea] to-white py-20 transition-colors duration-500">
                         <div className="w-full mx-auto px-2 sm:px-4 md:px-6">
                             {/* Section Header */}
@@ -2633,7 +2633,7 @@ export default function App() {
                         </div>
                     </section>
 
-                    {/* Signature Experiences Section - Orchid Resort Style */}
+                    {/* Signature Experiences Section - Resort Style */}
                     <section className="bg-gradient-to-b from-[#f4ede1] via-[#f9f4ea] to-white py-20 transition-colors duration-500">
                         <div className="w-full mx-auto px-2 sm:px-4 md:px-6">
                             {/* Section Header */}

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../services/api";
-import orchidLogo from "../assets/orchidlogo.png";
+import resortLogo from "../assets/logo.jpeg";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -31,7 +31,7 @@ export default function LoginPage() {
 
   return (
     <div className="relative min-h-screen flex items-center justify-center overflow-hidden p-4">
-      {/* Orchid Green Gradient Background */}
+      {/* Resort Golden Orange Gradient Background */}
       <div className="absolute inset-0 animate-gradient bg-gradient-to-br from-[#faf8f5] via-[#e8f5e9] to-[#c5e1a5]"></div>
 
       {/* Floating natural particles */}
@@ -57,8 +57,9 @@ export default function LoginPage() {
             <div className="absolute inset-0 bg-gray-800/30 rounded-full blur-xl"></div>
             <div className="relative bg-gradient-to-br from-gray-800 via-gray-900 to-black p-4 rounded-2xl shadow-lg border-2" style={{ borderColor: 'rgba(212, 175, 55, 0.3)' }}>
               <img 
-                src={orchidLogo} 
-                alt="Orchid Resort Logo" 
+                src={resortLogo} 
+                alt="Resort Logo"
+                className="w-full max-w-[200px] h-auto object-contain" 
                 className="h-28 md:h-32 w-auto object-contain drop-shadow-md"
               />
             </div>

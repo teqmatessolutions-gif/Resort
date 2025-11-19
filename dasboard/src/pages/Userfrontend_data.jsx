@@ -18,7 +18,7 @@ const getImageUrl = (imagePath) => {
     return imagePath;
   }
   
-  // Use the proper media base URL utility that handles Orchid/Pomma deployments
+  // Use the proper media base URL utility that handles Resort/Pomma deployments
   const baseUrl = getMediaBaseUrl();
   
   // Normalize the path

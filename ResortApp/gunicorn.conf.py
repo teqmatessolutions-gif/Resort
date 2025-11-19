@@ -5,7 +5,7 @@ import os
 import multiprocessing
 
 # Server socket
-bind = "0.0.0.0:8011"
+bind = "127.0.0.1:8012"
 backlog = 2048
 
 # Worker processes
@@ -20,13 +20,13 @@ graceful_timeout = 30  # Graceful shutdown timeout
 keepalive = 5  # Increased keepalive for better connection reuse
 
 # Logging
-accesslog = "/var/log/orchid/access.log"
-errorlog = "/var/log/orchid/error.log"
+accesslog = "/var/log/resort/access.log"
+errorlog = "/var/log/resort/error.log"
 loglevel = "info"
 access_log_format = '%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s" %(D)s'
 
 # Process naming
-proc_name = "orchid_management"
+proc_name = "resort_management"
 
 # Server mechanics
 daemon = False
@@ -48,7 +48,7 @@ limit_request_field_size = 8190
 
 # Application
 pythonpath = "/var/www/resort"
-chdir = "/var/www/resort/orchid_production/ResortApp"
+chdir = "/var/www/resort/resort_production/ResortApp"
 
 # Performance
 worker_tmp_dir = "/dev/shm"
@@ -57,7 +57,7 @@ max_requests_jitter = 50
 
 def when_ready(server):
     """Called just after the server is started."""
-    server.log.info("Orchid Resort Management System is ready to serve requests")
+    server.log.info("Resort Management System is ready to serve requests")
 
 
 def worker_int(worker):
