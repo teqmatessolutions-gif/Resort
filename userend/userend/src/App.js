@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, useMemo, useCallback, memo } from "react";
 import localLogo from "./assets/logo.jpeg";
 // Lucide React is used for elegant icons
-import { BedDouble, Coffee, ConciergeBell, Package, ChevronRight, ChevronLeft, ChevronDown, Image as ImageIcon, Star, Quote, ChevronUp, MessageSquare, Send, X, Facebook, Instagram, Linkedin, Twitter, Moon, Sun, Droplet } from 'lucide-react';
+import { BedDouble, Coffee, ConciergeBell, Package, ChevronRight, ChevronLeft, ChevronDown, Image as ImageIcon, Star, Quote, ChevronUp, MessageSquare, Send, X, Facebook, Instagram, Linkedin, Twitter, Moon, Sun, Droplet, Menu } from 'lucide-react';
 import { SiGooglemaps } from "react-icons/si";
 // Currency formatting utility
 import { formatCurrency } from './utils/currency';
@@ -881,6 +881,7 @@ export default function App() {
     const [isPackageSelectionOpen, setIsPackageSelectionOpen] = useState(false);
     const [isServiceBookingFormOpen, setIsServiceBookingFormOpen] = useState(false);
     const [isFoodOrderFormOpen, setIsFoodOrderFormOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isGeneralBookingOpen, setIsGeneralBookingOpen] = useState(false);
     const [showAmenities, setShowAmenities] = useState(false);
 
@@ -2090,14 +2091,18 @@ export default function App() {
                     </div>
                 )}
                 
-                <header className={`fixed left-0 right-0 z-50 bg-transparent h-24 ${bannerMessage.text ? 'top-16' : 'top-0'} transition-all duration-300`}>
-                    <div className="container mx-auto px-4 sm:px-6 md:px-12 h-full flex items-center justify-between">
+                <header className={`fixed left-0 right-0 z-50 h-20 md:h-24 ${bannerMessage.text ? 'top-16' : 'top-0'} transition-all duration-300`}>
+                    {/* Blur Background */}
+                    <div className="absolute inset-0 bg-white/80 dark:bg-black/80 backdrop-blur-md border-b border-white/20 dark:border-white/10"></div>
+                    
+                    <div className="container mx-auto px-4 sm:px-6 md:px-12 h-full flex items-center justify-between relative z-10">
+                        {/* Logo */}
                         <div className="flex items-center space-x-3 h-full">
-                            <div className="p-4 rounded-xl flex items-center justify-center shadow-lg border-2 bg-gradient-to-br from-gray-800 via-gray-900 to-black" style={{ borderColor: 'rgba(212, 175, 55, 0.3)' }}>
+                            <div className="p-3 md:p-4 rounded-xl flex items-center justify-center shadow-lg border-2 bg-gradient-to-br from-gray-800 via-gray-900 to-black" style={{ borderColor: 'rgba(212, 175, 55, 0.3)' }}>
                                 <img 
                                     src={logoSrc} 
                                     alt="Resort logo" 
-                                    className="h-12 w-auto object-contain drop-shadow-md"
+                                    className="h-10 md:h-12 w-auto object-contain drop-shadow-md"
                                     loading="lazy"
                                     onError={() => {
                                         setLogoIndex((prev) => {
@@ -2108,15 +2113,232 @@ export default function App() {
                                 />
                             </div>
                         </div>
-                        <nav className="flex items-center space-x-4">
+
+                        {/* Desktop Navigation Menu */}
+                        <nav className="hidden lg:flex items-center space-x-1">
+                            <a 
+                                href="#packages" 
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' });
+                                    setIsMobileMenuOpen(false);
+                                }}
+                                className="px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0f5132] dark:hover:text-amber-400 transition-colors duration-200 rounded-lg hover:bg-white/50 dark:hover:bg-white/10"
+                            >
+                                Exclusive Deals
+                            </a>
+                            <a 
+                                href="#rooms-section" 
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    document.getElementById('rooms-section')?.scrollIntoView({ behavior: 'smooth' });
+                                    setIsMobileMenuOpen(false);
+                                }}
+                                className="px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0f5132] dark:hover:text-amber-400 transition-colors duration-200 rounded-lg hover:bg-white/50 dark:hover:bg-white/10"
+                            >
+                                Rooms
+                            </a>
+                            <a 
+                                href="#services" 
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    const servicesSection = document.querySelector('[data-services-section]');
+                                    if (servicesSection) {
+                                        servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    }
+                                    setIsMobileMenuOpen(false);
+                                }}
+                                className="px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0f5132] dark:hover:text-amber-400 transition-colors duration-200 rounded-lg hover:bg-white/50 dark:hover:bg-white/10"
+                            >
+                                Services
+                            </a>
+                            <a 
+                                href="#food" 
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    const foodSection = document.querySelector('[data-food-section]');
+                                    if (foodSection) {
+                                        foodSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    }
+                                    setIsMobileMenuOpen(false);
+                                }}
+                                className="px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0f5132] dark:hover:text-amber-400 transition-colors duration-200 rounded-lg hover:bg-white/50 dark:hover:bg-white/10"
+                            >
+                                Food
+                            </a>
+                            <a 
+                                href="#gallery" 
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    const gallerySection = document.querySelector('[data-gallery-section]');
+                                    if (gallerySection) {
+                                        gallerySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    }
+                                    setIsMobileMenuOpen(false);
+                                }}
+                                className="px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0f5132] dark:hover:text-amber-400 transition-colors duration-200 rounded-lg hover:bg-white/50 dark:hover:bg-white/10"
+                            >
+                                Gallery
+                            </a>
+                            <a 
+                                href="#reviews" 
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    const reviewsSection = document.querySelector('[data-reviews-section]');
+                                    if (reviewsSection) {
+                                        reviewsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    }
+                                    setIsMobileMenuOpen(false);
+                                }}
+                                className="px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0f5132] dark:hover:text-amber-400 transition-colors duration-200 rounded-lg hover:bg-white/50 dark:hover:bg-white/10"
+                            >
+                                Reviews
+                            </a>
+                            <a 
+                                href="#contact" 
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    const contactSection = document.querySelector('[data-contact-section]');
+                                    if (contactSection) {
+                                        contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                    }
+                                    setIsMobileMenuOpen(false);
+                                }}
+                                className="px-4 py-2 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0f5132] dark:hover:text-amber-400 transition-colors duration-200 rounded-lg hover:bg-white/50 dark:hover:bg-white/10"
+                            >
+                                Contact
+                            </a>
+                        </nav>
+
+                        {/* Book Now Button & Mobile Menu Toggle */}
+                        <div className="flex items-center space-x-3">
                             <button 
                                 onClick={() => { setShowAmenities(false); setIsGeneralBookingOpen(true); }} 
-                                className="px-8 py-3.5 text-sm font-bold text-[#1a472a] bg-gradient-to-r from-[#d4af37] via-[#f4d03f] to-[#d4af37] rounded-lg shadow-xl hover:shadow-2xl hover:from-[#f4d03f] hover:via-[#ffd700] hover:to-[#f4d03f] transition-all duration-300 transform hover:scale-105 border-2 border-[#b8941f] uppercase tracking-wider focus:outline-none focus:ring-4 focus:ring-[#d4af37]/50"
+                                className="hidden sm:block px-6 md:px-8 py-2.5 md:py-3.5 text-xs md:text-sm font-bold text-[#1a472a] bg-gradient-to-r from-[#d4af37] via-[#f4d03f] to-[#d4af37] rounded-lg shadow-xl hover:shadow-2xl hover:from-[#f4d03f] hover:via-[#ffd700] hover:to-[#f4d03f] transition-all duration-300 transform hover:scale-105 border-2 border-[#b8941f] uppercase tracking-wider focus:outline-none focus:ring-4 focus:ring-[#d4af37]/50"
                             >
                                 Book Now
                             </button>
-                        </nav>
+                            
+                            {/* Mobile Menu Toggle */}
+                            <button
+                                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                                className="lg:hidden p-2 text-gray-700 dark:text-gray-300 hover:text-[#0f5132] dark:hover:text-amber-400 transition-colors rounded-lg hover:bg-white/50 dark:hover:bg-white/10"
+                                aria-label="Toggle menu"
+                            >
+                                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+                            </button>
+                        </div>
                     </div>
+
+                    {/* Mobile Navigation Menu */}
+                    {isMobileMenuOpen && (
+                        <div className="lg:hidden absolute top-full left-0 right-0 bg-white/95 dark:bg-black/95 backdrop-blur-md border-b border-white/20 dark:border-white/10 shadow-xl">
+                            <nav className="container mx-auto px-4 py-4 space-y-2">
+                                <a 
+                                    href="#packages" 
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        document.getElementById('packages')?.scrollIntoView({ behavior: 'smooth' });
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className="block px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0f5132] dark:hover:text-amber-400 hover:bg-white/50 dark:hover:bg-white/10 rounded-lg transition-colors"
+                                >
+                                    Exclusive Deals
+                                </a>
+                                <a 
+                                    href="#rooms-section" 
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        document.getElementById('rooms-section')?.scrollIntoView({ behavior: 'smooth' });
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className="block px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0f5132] dark:hover:text-amber-400 hover:bg-white/50 dark:hover:bg-white/10 rounded-lg transition-colors"
+                                >
+                                    Rooms
+                                </a>
+                                <a 
+                                    href="#services" 
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        const servicesSection = document.querySelector('[data-services-section]');
+                                        if (servicesSection) {
+                                            servicesSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                        }
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className="block px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0f5132] dark:hover:text-amber-400 hover:bg-white/50 dark:hover:bg-white/10 rounded-lg transition-colors"
+                                >
+                                    Services
+                                </a>
+                                <a 
+                                    href="#food" 
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        const foodSection = document.querySelector('[data-food-section]');
+                                        if (foodSection) {
+                                            foodSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                        }
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className="block px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0f5132] dark:hover:text-amber-400 hover:bg-white/50 dark:hover:bg-white/10 rounded-lg transition-colors"
+                                >
+                                    Food
+                                </a>
+                                <a 
+                                    href="#gallery" 
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        const gallerySection = document.querySelector('[data-gallery-section]');
+                                        if (gallerySection) {
+                                            gallerySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                        }
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className="block px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0f5132] dark:hover:text-amber-400 hover:bg-white/50 dark:hover:bg-white/10 rounded-lg transition-colors"
+                                >
+                                    Gallery
+                                </a>
+                                <a 
+                                    href="#reviews" 
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        const reviewsSection = document.querySelector('[data-reviews-section]');
+                                        if (reviewsSection) {
+                                            reviewsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                        }
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className="block px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0f5132] dark:hover:text-amber-400 hover:bg-white/50 dark:hover:bg-white/10 rounded-lg transition-colors"
+                                >
+                                    Reviews
+                                </a>
+                                <a 
+                                    href="#contact" 
+                                    onClick={(e) => {
+                                        e.preventDefault();
+                                        const contactSection = document.querySelector('[data-contact-section]');
+                                        if (contactSection) {
+                                            contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                                        }
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className="block px-4 py-3 text-sm font-semibold text-gray-700 dark:text-gray-300 hover:text-[#0f5132] dark:hover:text-amber-400 hover:bg-white/50 dark:hover:bg-white/10 rounded-lg transition-colors"
+                                >
+                                    Contact
+                                </a>
+                                <button 
+                                    onClick={() => { 
+                                        setShowAmenities(false); 
+                                        setIsGeneralBookingOpen(true);
+                                        setIsMobileMenuOpen(false);
+                                    }} 
+                                    className="w-full mt-4 px-6 py-3 text-sm font-bold text-[#1a472a] bg-gradient-to-r from-[#d4af37] via-[#f4d03f] to-[#d4af37] rounded-lg shadow-xl hover:shadow-2xl hover:from-[#f4d03f] hover:via-[#ffd700] hover:to-[#f4d03f] transition-all duration-300 transform hover:scale-105 border-2 border-[#b8941f] uppercase tracking-wider"
+                                >
+                                    Book Now
+                                </button>
+                            </nav>
+                        </div>
+                    )}
                 </header>
 
                 <main className="w-full max-w-full pt-0 space-y-0 relative z-10 overflow-hidden">
@@ -2832,7 +3054,7 @@ export default function App() {
                     )}
 
                     {/* Premium Services Showcase Section */}
-                    <section className={`${theme.bgCard} py-20 transition-colors duration-500`}>
+                    <section data-services-section className={`${theme.bgCard} py-20 transition-colors duration-500`}>
                         <div className="w-full mx-auto px-2 sm:px-4 md:px-6">
                             {/* Section Header */}
                             <div className="text-center mb-16">
@@ -2895,7 +3117,7 @@ export default function App() {
                     </section>
 
                     {/* Premium Cuisine Section - Mountain Shadows Style */}
-                    <section className={`bg-gradient-to-b ${theme.bgCard} ${theme.bgSecondary} py-20 pb-28 transition-colors duration-500`}>
+                    <section data-food-section className={`bg-gradient-to-b ${theme.bgCard} ${theme.bgSecondary} py-20 pb-28 transition-colors duration-500`}>
                         <div className="w-full mx-auto px-2 sm:px-4 md:px-6">
                             {/* Section Header */}
                             <div className="text-center mb-16">
@@ -2999,7 +3221,7 @@ export default function App() {
                     </section>
 
                     {/* Premium Gallery Section - Mountain Shadows Style */}
-                    <section className={`bg-gradient-to-b ${theme.bgCard} ${theme.bgSecondary} py-20 transition-colors duration-500`}>
+                    <section data-gallery-section className={`bg-gradient-to-b ${theme.bgCard} ${theme.bgSecondary} py-20 transition-colors duration-500`}>
                         <div className="w-full mx-auto px-2 sm:px-4 md:px-6">
                             {/* Section Header */}
                             <div className="text-center mb-16">
@@ -3168,7 +3390,7 @@ export default function App() {
 
 
                     {/* Reviews Section */}
-                    <section>
+                    <section data-reviews-section>
                         <h2 className={`group ${sectionTitleStyle}`}>
                             <Quote className={`inline-block mr-3 mb-1 ${iconStyle}`} /> What Our Guests Say
                         </h2>
@@ -3846,7 +4068,7 @@ export default function App() {
                     </div>
                 )}
                 
-                <footer className="bg-transparent text-white py-8 px-4 md:px-12 mt-12">
+                <footer data-contact-section className="bg-transparent text-white py-8 px-4 md:px-12 mt-12">
                     <div className="container mx-auto flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0">
                         {resortInfo && (
                             <>

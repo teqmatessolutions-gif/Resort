@@ -34,6 +34,9 @@ const getRouterBasename = () => {
   if (path.startsWith("/pommaadmin")) {
     return "/pommaadmin";
   }
+  if (path.startsWith("/admin")) {
+    return "/admin";
+  }
   // For local development without path prefix, use empty basename
   const hostname = window.location.hostname || "";
   if (hostname === "localhost" || hostname === "127.0.0.1") {
@@ -44,6 +47,7 @@ const getRouterBasename = () => {
 
 function App() {
   const basename = getRouterBasename();
+  console.log("Router basename:", basename, "Current path:", typeof window !== "undefined" ? window.location.pathname : "SSR");
   return (
     <Router basename={basename}>
       <Routes>
